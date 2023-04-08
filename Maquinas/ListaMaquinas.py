@@ -1,4 +1,4 @@
-import Maquina
+import Maquinas.Maquina as Maquina
 
 class ListaMaquinas:
 
@@ -34,3 +34,9 @@ class ListaMaquinas:
                 return True
             aux = aux.siguiente
         return False
+    
+    def imprimir(self):
+        aux = self.primero
+        while aux is not None:
+            print(aux)
+            aux = aux.siguiente

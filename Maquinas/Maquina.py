@@ -10,3 +10,6 @@ class Maquina:
 
     def verificar_nombre(self, nombre):
         return self._nombre == nombre
+    
+    def __str__(self) -> str:
+        return f'Nombre: {self._nombre} - Pines: {self._lista_pines.imprimir()}'

@@ -1,4 +1,4 @@
-import Pin
+import Maquinas.Pin as Pin
 
 class ListaPin:
     
@@ -7,9 +7,9 @@ class ListaPin:
         self.cola = None
         self._tamanio = 0
 
-    def Insertar(self, elementos, numero_pines):
+    def insertar(self, elementos, numero_pines):
         if self._tamanio >= numero_pines:
-            print('El numero de pines es mayor al numero de pines que acepta la maquina')
+            print('Maximo numero de pines alcanzado')
             return
         nuevo_pin = Pin.Pin(elementos)
         if self.cabeza == None:
@@ -21,10 +21,16 @@ class ListaPin:
             self.cola = nuevo_pin
         self._tamanio += 1
     
-    def verificar_elementos(self, elementos):
+    def verificar_elementos(self, elemento):
         aux = self.cabeza
         while aux is not None:
-            if aux.verificar_elementos(elementos):
+            if aux.verificar_elementos(elemento):
                 return True
             aux = aux.siguiente
         return False
+    
+    def imprimir(self):
+        aux = self.cabeza
+        while aux is not None:
+            print(aux)
+            aux = aux.siguiente

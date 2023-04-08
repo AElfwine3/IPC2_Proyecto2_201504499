@@ -14,7 +14,6 @@ class App:
         self.root = root
 
         self.style = ttk.Style(self.root)
-        self.root.tk.call('source', 'Temas/forest-light.tcl')
         self.root.tk.call('source', 'Temas/forest-dark.tcl')
         self.style.theme_use('forest-dark')
 
