@@ -28,6 +28,14 @@ class ListaCompuestos:
                 aux = aux.siguiente
             return None
         
+        def buscar_compuesto(self, nombre):
+            aux = self.primero
+            while aux is not None:
+                if aux.verificar_nombre(nombre):
+                    return aux._elementos
+                aux = aux.siguiente
+            return None
+        
         def verificar_compuesto(self, nombre):
             aux = self.primero
             while aux is not None:

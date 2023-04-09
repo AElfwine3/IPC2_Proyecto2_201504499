@@ -34,3 +34,15 @@ class ListaPin:
         while aux is not None:
             print(aux)
             aux = aux.siguiente
+        
+    def tamano(self):
+        return self._tamanio
+    
+    def recorrer(self, indice):
+        nodo_actual = self.cabeza
+        contador = 0
+        while nodo_actual is not None:
+            if contador == indice:
+                return nodo_actual._elementos
+            contador += 1
+            nodo_actual = nodo_actual.siguiente

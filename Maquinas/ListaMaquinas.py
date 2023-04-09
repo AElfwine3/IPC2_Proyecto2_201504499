@@ -40,3 +40,22 @@ class ListaMaquinas:
         while aux is not None:
             print(aux)
             aux = aux.siguiente
+
+    def crear_lista(self, lista):
+        aux = self.primero
+        while aux is not None:
+            aux.mostrar_en_lista(lista)
+            aux = aux.siguiente
+
+    def tamano(self):
+        return self.tamanio
+    
+    def recorrer(self, indice):
+        nodo_actual = self.primero
+        contador = 0
+        while nodo_actual is not None:
+            if contador == indice:
+                return nodo_actual
+            contador += 1
+            nodo_actual = nodo_actual.siguiente
+        return None

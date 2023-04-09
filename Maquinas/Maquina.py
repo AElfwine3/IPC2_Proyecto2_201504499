@@ -11,5 +11,8 @@ class Maquina:
     def verificar_nombre(self, nombre):
         return self._nombre == nombre
     
+    def mostrar_en_lista(self, lista):
+        lista.insert('', 'end', values=(self._nombre, self._numero_pines, self._limite_elementos))
+    
     def __str__(self) -> str:
         return f'Nombre: {self._nombre} - Pines: {self._lista_pines.imprimir()}'

@@ -1,13 +1,16 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
-from Controllers import LecturaArchivo
+from PIL import ImageTk, Image
+from Controllers import LecturaArchivo, GraficarMaquinas
 from Elementos import ElementosSingleton
 from Compuestos import CompuestosSingleton
+from Maquinas import MaquinasSingleton
 
 
 tabla_elementos = ElementosSingleton.ElementosSingleton.getInstance()
 lista_compuestos = CompuestosSingleton.CompuestosSingleton.getInstance()
+lista_maquinas = MaquinasSingleton.MaquinasSingleton.getInstance()
 
 class App:
     def __init__(self, root):
@@ -18,7 +21,7 @@ class App:
         self.style.theme_use('forest-dark')
 
         self.root.title("Sistema de Gestion de Quimicos")
-        self.root.geometry("800x600")
+        self.root.geometry("850x700")
         # self.root.resizable(0,0)
 
         self.menu = Menu(self.root)
@@ -130,6 +133,8 @@ class App:
         treescrolly.config(command=self.tree.yview)
 
         tabla_elementos.crear_lista(self.tree)
+
+        GraficarMaquinas.graficar_elementos()
     
     def compounds(self):
         print("Gestion de compuestos")
@@ -183,7 +188,38 @@ class App:
         self.frame = Frame(self.tab4, width=600, height=400)
         self.frame.grid(row=0, column=0)
         self.title = Label(self.frame, text="Maquinas", font=("Arial", 20))
-        self.title.place(x=20, y=25)
+        self.title.grid(row=0, column=0)
+
+        # self.tree_frame = ttk.Frame(self.frame, height=300)
+        # self.tree_frame.grid(row=0, column=0, padx=5, pady=5)
+
+        # treescrolly = ttk.Scrollbar(self.tree_frame, orient="vertical")
+        # treescrolly.pack(side="right", fill="y")
+
+        # columns = ("Nombre", "Numero pines", "Numero elementos")
+        # self.tree_machine = ttk.Treeview(self.tree_frame, show="headings", columns=columns, yscrollcommand=treescrolly.set)
+        # self.tree_machine.column("Nombre", width=125)
+        # self.tree_machine.column("Numero pines", width=100)
+        # self.tree_machine.column("Numero elementos", width=125)
+        # self.tree_machine.heading("Nombre", text="Nombre")
+        # self.tree_machine.heading("Numero pines", text="Numero de pines")
+        # self.tree_machine.heading("Numero elementos", text="Numero de elementos")
+        # self.tree_machine.pack(side="left", fill="both")
+        # treescrolly.config(command=self.tree_machine.yview)
+
+        # lista_maquinas.crear_lista(self.tree_machine)
+
+        GraficarMaquinas.graficar()
+
+        # self.img_frame = ttk.Frame(self.frame, width= 200, height=300)
+        # self.img_frame.grid(row=1, column=0, padx=10, pady=5)
+
+        self.load = Image.open("Maquinas.png")
+        self.load = self.load.resize((700, 250), Image.LANCZOS)
+        self.render = ImageTk.PhotoImage(self.load)
+        self.img = ttk.Label(self.frame, image=self.render)
+        self.img.grid(row=0, column=0, padx=10, pady=5)
+
     
     def help(self):
         print("Ayuda")
