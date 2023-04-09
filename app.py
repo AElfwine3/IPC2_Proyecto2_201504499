@@ -232,7 +232,7 @@ class App:
         self.docu.grid(row=4, column=0, padx=10, pady=20)
 
     def documentacion(self):
-        webbrowser.open("https://github.com/AElfwine3/IPC2_Proyecto2_201504499")
+        webbrowser.open("https://github.com/AElfwine3/IPC2_Proyecto2_201504499/blob/main/Documentacion/ArticuloEnsayo-IPC2-lab.pdf")
     
     def add_element(self):
         print('Agregar elemento')
