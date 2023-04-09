@@ -4,7 +4,6 @@ class ListaPin:
     
     def __init__(self):
         self.cabeza = None
-        self.cola = None
         self._tamanio = 0
 
     def insertar(self, elementos, numero_pines):
@@ -12,13 +11,13 @@ class ListaPin:
             print('Maximo numero de pines alcanzado')
             return
         nuevo_pin = Pin.Pin(elementos)
-        if self.cabeza == None:
+        if self.cabeza is None:
             self.cabeza = nuevo_pin
-            self.cola = nuevo_pin
         else:
-            nuevo_pin.anterior = self.cola
-            self.cola.siguiente = nuevo_pin
-            self.cola = nuevo_pin
+            aux = self.cabeza
+            while aux.siguiente is not None:
+                aux = aux.siguiente
+            aux.siguiente = nuevo_pin
         self._tamanio += 1
     
     def verificar_elementos(self, elemento):

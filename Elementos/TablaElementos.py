@@ -5,6 +5,7 @@ class TablaElementos:
 
     def __init__(self):
         self.primero = None
+        self.ultimo = None
         self.tamanio = 0
 
     def insertar(self, numero_atomico, simbolo, nombre):
@@ -12,13 +13,13 @@ class TablaElementos:
             print('El elemento ya existe')
             return
         elemento = Elemento.Elemento(numero_atomico, simbolo, nombre)
-        if self.primero is None:
+        if self.primero == None:
             self.primero = elemento
+            self.ultimo = elemento
         else:
-            aux = self.primero
-            while aux.siguiente is not None:
-                aux = aux.siguiente
-            aux.siguiente = elemento
+            elemento.anterior = self.ultimo
+            self.ultimo.siguiente = elemento
+            self.ultimo = elemento
         self.tamanio += 1
     
     def insertar_compuesto(self, nodo):

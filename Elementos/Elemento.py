@@ -6,6 +6,7 @@ class Elemento:
         self._simbolo = simbolo
         self._nombre = nombre
         self.siguiente = None
+        self.anterior = None
     
     def verificar_simbolo(self, simbolo):
         if self._simbolo == simbolo:

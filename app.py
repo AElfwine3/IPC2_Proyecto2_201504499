@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from tkinter import filedialog
+import webbrowser
 from PIL import ImageTk, Image
 from Controllers import LecturaArchivo, GraficarMaquinas
 from Elementos import ElementosSingleton
@@ -71,25 +72,23 @@ class App:
             self.help()
 
     def init(self):
-        print("Inicializacion")
         self.frame = Frame(self.tab1, width=700, height=400)
         self.frame.grid(row=0, column=0)
-        self.title = Label(self.frame, text="Inicializando", font=("Arial", 20))
-        self.title.place(x=20, y=25)
+        self.title = Label(self.frame, text="Bienvenido", font=("Arial", 20))
+        self.title.place(x=270, y=25)
+        self.text = Label(self.frame, text="Para comenzar, seleccione un archivo XML desde el menu archivo", font=("Arial", 12))
+        self.text.place(x=125, y=75)
     
     def load(self):
-        print("Cargar archivo")
         self.file = filedialog.askopenfile(title="Selecciona un archivo", mode='r', filetypes=(("Archivos XML", "*.xml"),))
         if self.file is not None:
             LecturaArchivo.leer_xml(self.file)
             self.file.close()
-
     
     def generate(self):
         print("Generar archivo")
     
     def elements(self):
-        print("Gestion de elementos")
         self.frame = ttk.Frame(self.tab2, width=600, height=400)
         self.frame.grid(row=0, column=0)
         
@@ -137,7 +136,6 @@ class App:
         GraficarMaquinas.graficar_elementos()
     
     def compounds(self):
-        print("Gestion de compuestos")
         self.frame = Frame(self.tab3, width=600, height=400)
         self.frame.grid(row=0, column=0)
         self.title = Label(self.frame, text="Compuestos", font=("Arial", 20))
@@ -184,7 +182,6 @@ class App:
         lista_compuestos.buscar(seleccion, self.tree_comp)
     
     def machines(self):
-        print("Gestion de maquinas")
         self.frame = Frame(self.tab4, width=600, height=400)
         self.frame.grid(row=0, column=0)
         self.title = Label(self.frame, text="Maquinas", font=("Arial", 20))
@@ -192,10 +189,8 @@ class App:
 
         # self.tree_frame = ttk.Frame(self.frame, height=300)
         # self.tree_frame.grid(row=0, column=0, padx=5, pady=5)
-
         # treescrolly = ttk.Scrollbar(self.tree_frame, orient="vertical")
         # treescrolly.pack(side="right", fill="y")
-
         # columns = ("Nombre", "Numero pines", "Numero elementos")
         # self.tree_machine = ttk.Treeview(self.tree_frame, show="headings", columns=columns, yscrollcommand=treescrolly.set)
         # self.tree_machine.column("Nombre", width=125)
@@ -206,7 +201,6 @@ class App:
         # self.tree_machine.heading("Numero elementos", text="Numero de elementos")
         # self.tree_machine.pack(side="left", fill="both")
         # treescrolly.config(command=self.tree_machine.yview)
-
         # lista_maquinas.crear_lista(self.tree_machine)
 
         GraficarMaquinas.graficar()
@@ -222,9 +216,23 @@ class App:
 
     
     def help(self):
-        print("Ayuda")
         self.frame = Frame(self.tab5, width=600, height=400)
-        self.frame.grid(row=0, column=0)
+        self.frame.place(x=160, y=30)
+        self.title = Label(self.frame, text="Ayuda", font=("Arial", 20))
+        self.title.grid(row=0, column=0, padx=10, pady=20)
+
+        self.text = Label(self.frame, text="Introduccion a la Programacion y Computacion 2 C", font=("Arial", 12))
+        self.text.grid(row=1, column=0)
+        self.text = Label(self.frame, text="Elvin Leonel Mayen Carrillo", font=("Arial", 12))
+        self.text.grid(row=2, column=0)
+        self.text = Label(self.frame, text="201504499", font=("Arial", 12))
+        self.text.grid(row=3, column=0)
+
+        self.docu = ttk.Button(self.frame, text="Ver Documentacion", command=self.documentacion)
+        self.docu.grid(row=4, column=0, padx=10, pady=20)
+
+    def documentacion(self):
+        webbrowser.open("https://github.com/AElfwine3/IPC2_Proyecto2_201504499")
     
     def add_element(self):
         print('Agregar elemento')
